@@ -579,6 +579,12 @@ impl<'a> ValueSet<'a> {
     pub(crate) fn field_set(&self) -> &FieldSet {
         self.fields
     }
+
+    /// Returns true if this `ValueSet` contains all the fields on the
+    /// corresponding span.
+    pub fn is_complete(&self) -> bool {
+        self.values.iter().all(|(key, val)| val.is_some())
+    }
 }
 
 impl<'a> fmt::Debug for ValueSet<'a> {
